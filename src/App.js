@@ -1,27 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Grommet from './Grommet';
+import Polaris from './Polaris';
+import { Navbar, Provider } from 'rendition';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+    const Brand = (
+      <div color="white">
+        UI playground
       </div>
-    );
+    )
+    const Wrap = styled.div`
+      position: relative;
+    `;
+    return (
+      <Router>
+        <main>
+          <Provider>
+            <Navbar brand={Brand} color="white">
+              <Link to="/">Rendition</Link>
+              <Link to="/grommet">Grommet</Link>
+              <Link to="/polaris">Polaris</Link>
+            </Navbar>
+          </Provider>
+          <Wrap>
+            <Route path="/grommet" component={Grommet} />
+            <Route path="/polaris" component={Polaris} />
+          </Wrap>
+        </main>
+      </Router>
+    )
   }
 }
 
